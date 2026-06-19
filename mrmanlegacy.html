@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MR Man Legacy — Called Forward</title>
+<meta name="description" content="MR Man Legacy brings together biblical truth, brain science, and brotherhood for men who are ready to live with more purpose, clarity, and direction. Led by Mark Pierce and Rick Krug.">
+<meta property="og:title" content="MR Man Legacy — Called Forward">
+<meta property="og:description" content="For men who look strong on the outside but feel stuck, overwhelmed, or alone on the inside.">
+<meta property="og:image" content="https://picsum.photos/seed/mrman-brotherhood/1200/630">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Work+Sans:wght@300..700&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --text-hero: clamp(2.75rem, 0.5rem + 7vw, 7rem);
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Work Sans', 'Helvetica Neue', sans-serif;
+
+  /* MR Man Legacy brand palette — dark, grounded, ember + teal */
+  --color-bg: #0f0e0c;
+  --color-surface: #161512;
+  --color-surface-2: #1c1a17;
+  --color-surface-offset: #22201c;
+  --color-surface-dynamic: #2a2723;
+  --color-divider: #2e2b27;
+  --color-border: #3a3732;
+
+  --color-text: #d8d4cc;
+  --color-text-muted: #9a9288;
+  --color-text-faint: #5c5850;
+  --color-text-inverse: #0f0e0c;
+
+  /* Teal accent */
+  --color-primary: #3d9aa6;
+  --color-primary-hover: #2e7f8a;
+  --color-primary-active: #1e606b;
+  --color-primary-highlight: #1a3035;
+
+  /* Ember/amber secondary */
+  --color-ember: #c8681a;
+  --color-ember-hover: #a85514;
+  --color-ember-light: #e8904a;
+
+  --radius-sm: 0.375rem; --radius-md: 0.5rem;
+  --radius-lg: 0.75rem; --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.3);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.4);
+  --shadow-lg: 0 12px 40px oklch(0 0 0 / 0.5);
+
+  --content-narrow: 640px;
+  --content-default: 960px;
+  --content-wide: 1200px;
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+}
+img { display: block; max-width: 100%; height: auto; }
+h1,h2,h3,h4 { text-wrap: balance; line-height: 1.15; }
+p { text-wrap: pretty; }
+a, button { transition: color var(--transition-interactive), background var(--transition-interactive), border-color var(--transition-interactive); }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+
+/* ===== NAV ===== */
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: oklch(from var(--color-bg) l c h / 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-divider);
+  padding: var(--space-3) var(--space-6);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: var(--space-3);
+  text-decoration: none;
+}
+.nav-logo svg { width: 40px; height: 40px; flex-shrink: 0; }
+.nav-logo-text { font-family: var(--font-display); font-weight: 700; font-size: var(--text-base); color: var(--color-text); }
+.nav-logo-text span { color: var(--color-primary); }
+.nav-links { display: flex; align-items: center; gap: var(--space-6); list-style: none; }
+.nav-links a {
+  font-size: var(--text-sm); font-weight: 500; color: var(--color-text-muted);
+  text-decoration: none; letter-spacing: 0.03em;
+}
+.nav-links a:hover { color: var(--color-text); }
+.nav-cta {
+  background: var(--color-primary); color: #fff;
+  padding: var(--space-2) var(--space-5); border-radius: var(--radius-full);
+  font-size: var(--text-sm); font-weight: 600; text-decoration: none;
+}
+.nav-cta:hover { background: var(--color-primary-hover); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: var(--space-2); }
+.nav-toggle span { width: 22px; height: 2px; background: var(--color-text); border-radius: 2px; transition: all 0.3s; }
+.mobile-nav { display: none; position: fixed; top: 65px; left: 0; right: 0; z-index: 99;
+  background: var(--color-surface); border-bottom: 1px solid var(--color-divider);
+  padding: var(--space-6); flex-direction: column; gap: var(--space-5); }
+.mobile-nav a { color: var(--color-text-muted); text-decoration: none; font-size: var(--text-base); font-weight: 500; }
+.mobile-nav a:hover { color: var(--color-text); }
+.mobile-nav.open { display: flex; }
+
+/* ===== SECTIONS SHARED ===== */
+.section {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) var(--space-6);
+}
+.section-inner {
+  max-width: var(--content-default);
+  margin-inline: auto;
+}
+.section-inner-wide {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+}
+.section-label {
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-primary); margin-bottom: var(--space-3);
+}
+.section-title { word-spacing: 0.06em; line-height: 1.2;
+  font-family: var(--font-display); font-size: var(--text-2xl);
+  color: var(--color-text); margin-bottom: var(--space-4);
+}
+.section-body {
+  font-size: var(--text-base); color: var(--color-text-muted); max-width: 62ch; line-height: 1.7;
+}
+
+/* ===== POPUP ===== */
+.popup-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: oklch(0 0 0 / 0.75); align-items: center; justify-content: center; padding: var(--space-6);
+}
+.popup-overlay.open { display: flex; }
+.popup-box {
+  background: var(--color-surface-2); border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl); max-width: 480px; width: 100%;
+  padding: var(--space-10); box-shadow: var(--shadow-lg); position: relative;
+}
+.popup-badge {
+  display: inline-block; background: var(--color-ember); color: #fff;
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); margin-bottom: var(--space-4);
+}
+.popup-box h2 { font-family: var(--font-display); font-size: var(--text-xl); color: var(--color-text); margin-bottom: var(--space-3); }
+.popup-box p { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; margin-bottom: var(--space-2); }
+.popup-meta { font-size: var(--text-xs); color: var(--color-text-faint); margin-bottom: var(--space-6); }
+.popup-meta span { color: var(--color-primary); font-weight: 600; }
+.popup-actions { display: flex; flex-direction: column; gap: var(--space-3); }
+.popup-close {
+  position: absolute; top: var(--space-4); right: var(--space-4);
+  width: 32px; height: 32px; border-radius: var(--radius-full);
+  background: var(--color-surface-offset); color: var(--color-text-muted);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem; cursor: pointer;
+}
+.popup-close:hover { background: var(--color-surface-dynamic); color: var(--color-text); }
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-2); font-size: var(--text-sm); font-weight: 600;
+  padding: var(--space-3) var(--space-8); border-radius: var(--radius-full);
+  text-decoration: none; cursor: pointer; border: 2px solid transparent;
+}
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-primary:hover { background: var(--color-primary-hover); }
+.btn-ember { background: var(--color-ember); color: #fff; }
+.btn-ember:hover { background: var(--color-ember-hover); }
+.btn-outline { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+.btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.btn-ghost { background: transparent; color: var(--color-primary); }
+.btn-ghost:hover { color: var(--color-primary-hover); }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100dvh; display: flex; align-items: center;
+  padding-top: 80px;
+  background:
+    linear-gradient(180deg, oklch(0 0 0 / 0.7) 0%, oklch(0 0 0 / 0.5) 60%, var(--color-bg) 100%),
+    url('https://picsum.photos/seed/mrman-rugged-man/1600/900') center/cover no-repeat;
+  position: relative;
+}
+.hero-inner {
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding: var(--space-16) var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+}
+.hero-tag {
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-ember-light); margin-bottom: var(--space-4);
+}
+.hero-headline { word-spacing: 0.08em; line-height: 1.12;
+  font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 900;
+  color: #fff; line-height: 1.05; margin-bottom: var(--space-6);
+}
+.hero-headline em { color: var(--color-primary); font-style: normal; }
+.hero-tag-secondary { margin-top: 0.35rem; display:flex; align-items:center; gap:0.5rem; opacity:0.9; font-size:var(--text-xs); letter-spacing:0.12em; text-transform:uppercase; }
+.hero-sub {
+  font-size: var(--text-base); color: oklch(1 0 0 / 0.8); max-width: 52ch;
+  line-height: 1.6; margin-bottom: var(--space-8);
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.hero-trust {
+  display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: var(--space-10);
+  padding-top: var(--space-8); border-top: 1px solid oklch(1 0 0 / 0.12);
+}
+.trust-item { display: flex; align-items: center; gap: var(--space-2); }
+.trust-icon { color: var(--color-primary); font-size: 1.25rem; }
+.trust-text { font-size: var(--text-xs); color: oklch(1 0 0 / 0.6); max-width: 24ch; }
+
+/* ===== SERVICES ===== */
+#services { background: var(--color-surface); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-5); margin-top: var(--space-12);
+}
+.service-card {
+  background: var(--color-surface-2); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-4);
+  transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+}
+.service-card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+.service-icon {
+  width: 44px; height: 44px;
+  color: var(--color-primary);
+}
+.service-card h3 { font-family: var(--font-display); font-size: var(--text-xl); color: var(--color-text); }
+.service-card p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.65; flex: 1; }
+.service-card .service-tag {
+  font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-ember); background: oklch(from var(--color-ember) l c h / 0.12);
+  padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); width: fit-content;
+}
+
+/* ===== ABOUT ===== */
+#about { background: var(--color-bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); margin-top: var(--space-12); }
+.about-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl); overflow: hidden;
+}
+.about-card-img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+}
+.about-card-body { padding: var(--space-8); }
+.about-card-name { font-family: var(--font-display); font-size: var(--text-xl); color: var(--color-text); margin-bottom: var(--space-1); }
+.about-card-role { font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-primary); margin-bottom: var(--space-4); }
+.about-card p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.7; }
+
+/* ===== MISSION BAND ===== */
+.mission-band {
+  background: var(--color-primary-highlight);
+  border-top: 1px solid var(--color-primary-active);
+  border-bottom: 1px solid var(--color-primary-active);
+  padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+  text-align: center;
+}
+.mission-band blockquote {
+  font-family: var(--font-display); font-size: var(--text-2xl); font-style: italic;
+  color: var(--color-text); max-width: 760px; margin-inline: auto; line-height: 1.3;
+}
+.mission-band blockquote em { color: var(--color-primary); font-style: normal; }
+.mission-band cite { display: block; margin-top: var(--space-6); font-size: var(--text-sm); color: var(--color-text-muted); font-style: normal; }
+
+/* ===== TESTIMONIALS ===== */
+#testimonials { background: var(--color-surface); }
+.testimonial-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px,100%), 1fr));
+  gap: var(--space-5); margin-top: var(--space-12);
+}
+.testimonial-card {
+  background: var(--color-surface-2); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-5);
+}
+.testimonial-stars { color: var(--color-ember); font-size: 0.9rem; }
+.testimonial-card blockquote {
+  font-size: var(--text-base); color: var(--color-text); line-height: 1.7; flex: 1;
+  font-style: italic;
+}
+.testimonial-author { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 600; }
+
+/* ===== FAQ ===== */
+#faq { background: var(--color-bg); }
+.faq-list { margin-top: var(--space-12); display: flex; flex-direction: column; gap: var(--space-3); }
+.faq-item {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.faq-question {
+  width: 100%; text-align: left; padding: var(--space-6) var(--space-8);
+  font-size: var(--text-base); font-weight: 600; color: var(--color-text);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+}
+.faq-question svg { flex-shrink: 0; transition: transform 0.3s; }
+.faq-question[aria-expanded="true"] svg { transform: rotate(45deg); }
+.faq-answer { padding: 0 var(--space-8); max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+.faq-answer.open { max-height: 400px; padding: 0 var(--space-8) var(--space-6); }
+.faq-answer p { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.7; }
+
+/* ===== EVENTS BAND ===== */
+.events-band {
+  background: linear-gradient(135deg, var(--color-surface-2) 0%, var(--color-surface-offset) 100%);
+  border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);
+  padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+}
+.events-inner { max-width: var(--content-wide); margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
+.events-headline { font-family: var(--font-display); font-size: var(--text-2xl); color: var(--color-text); margin-bottom: var(--space-4); }
+.events-headline em { color: var(--color-ember-light); font-style: normal; }
+.event-featured-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg);
+}
+.event-featured-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.event-card-body { padding: var(--space-8); }
+.event-badge { background: var(--color-ember); color: #fff; font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); width: fit-content; margin-bottom: var(--space-4); }
+.event-card-body h3 { font-family: var(--font-display); font-size: var(--text-xl); color: var(--color-text); margin-bottom: var(--space-2); }
+.event-meta { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-6); }
+.event-meta span { color: var(--color-primary); font-weight: 600; }
+
+/* ===== CONTACT ===== */
+#contact { background: var(--color-surface); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--space-12); margin-top: var(--space-12); align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: var(--space-6); }
+.contact-detail { display: flex; align-items: flex-start; gap: var(--space-4); }
+.contact-detail-icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+.contact-detail-text { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+.contact-detail-text strong { display: block; color: var(--color-text); font-weight: 600; margin-bottom: 2px; }
+.contact-form { display: flex; flex-direction: column; gap: var(--space-5); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.form-group { display: flex; flex-direction: column; gap: var(--space-2); }
+.form-group label { font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); }
+.form-group input, .form-group textarea, .form-group select {
+  background: var(--color-surface-2); border: 1px solid var(--color-border);
+  color: var(--color-text); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body); font-size: var(--text-sm); width: 100%;
+  transition: border-color var(--transition-interactive);
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  outline: 2px solid var(--color-primary); outline-offset: 2px; border-color: var(--color-primary);
+}
+.form-group textarea { min-height: 130px; resize: vertical; }
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background: var(--color-surface-offset);
+  border-top: 1px solid var(--color-divider);
+  padding: var(--space-12) var(--space-6) var(--space-8);
+}
+.footer-inner { max-width: var(--content-wide); margin-inline: auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--space-12); padding-bottom: var(--space-10); border-bottom: 1px solid var(--color-divider); }
+.footer-brand p { font-size: var(--text-sm); color: var(--color-text-muted); max-width: 36ch; margin-top: var(--space-3); line-height: 1.6; }
+.footer-col h4 { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: var(--space-4); }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+.footer-col ul li a { font-size: var(--text-sm); color: var(--color-text-muted); text-decoration: none; }
+.footer-col ul li a:hover { color: var(--color-text); }
+.footer-bottom { max-width: var(--content-wide); margin-inline: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4); padding-top: var(--space-8); }
+.footer-copy { font-size: var(--text-xs); color: var(--color-text-faint); }
+.footer-contact { font-size: var(--text-xs); color: var(--color-text-muted); text-align: right; }
+.footer-contact a { color: var(--color-primary); text-decoration: none; }
+.footer-contact a:hover { color: var(--color-primary-hover); }
+
+/* ===== 5 PILLARS BAND ===== */
+.pillars-band { background: var(--color-surface-2); padding: clamp(var(--space-12), 5vw, var(--space-20)) var(--space-6); }
+.pillars-inner { max-width: var(--content-wide); margin-inline: auto; text-align: center; }
+.pillars-row { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-10); }
+.pillar {
+  background: var(--color-surface-offset); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--space-6) var(--space-8);
+  min-width: 140px; text-align: center;
+}
+.pillar-icon { font-size: 1.6rem; margin-bottom: var(--space-2); }
+.pillar-label { font-size: var(--text-sm); font-weight: 700; color: var(--color-text); }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about-grid, .events-inner, .contact-grid, .footer-inner { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-toggle { display: flex; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+<!-- MR Man Legacy site is designed to evolve with small updates every 1–2 months. -->
+</head>
+<body>
+
+<!-- ===== POPUP ===== -->
+<div class="popup-overlay" id="popup" role="dialog" aria-modal="true" aria-label="Upcoming Event">
+  <div class="popup-box">
+    <button class="popup-close" id="popup-close" aria-label="Close popup">✕</button>
+    <span class="popup-badge">📅 Upcoming Event</span>
+    <h2>MR Man Legacy — Live Men's Event</h2>
+    <p>A focused event for men who need clarity, spiritual reset, and renewed direction. Built on biblical truth, brain science, and brotherhood.</p>
+    <p class="popup-meta">
+      Date: <span>Coming Soon</span> &nbsp;·&nbsp; Location: <span>Phoenix, Arizona Area</span> &nbsp;·&nbsp; Theme: <span>Purpose, Direction & Brotherhood</span>
+    </p>
+    <div class="popup-actions">
+      <a href="#contact" class="btn btn-ember" id="popup-cta">Ask About This Event</a>
+      <a href="#events" class="btn btn-outline" id="popup-events">See All Events</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo" aria-label="MR Man Legacy home">
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <rect width="40" height="40" rx="8" fill="#1a3035"/>
+      <text x="5" y="28" font-family="Georgia, serif" font-weight="900" font-size="20" fill="#3d9aa6">MR</text>
+      <rect x="5" y="31" width="30" height="2.5" rx="1.25" fill="#c8681a"/>
+    </svg>
+    <span class="nav-logo-text">MR <span>Man</span></span>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Call</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#events">Events</a>
+  <a href="#testimonials">Stories</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact" class="btn btn-primary" style="text-align:center">Book a Call</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-tag">Called Forward · Grounded · Brotherhood</p>
+      <p class="hero-tag hero-tag-secondary">
+        <span aria-hidden="true">🧭</span>
+        <span>Built to Attract Men Who Are Ready to Grow.</span>
+      </p>
+      <h1 class="hero-headline">For Men Who Are<br><em>Ready</em> to Live<br>Differently</h1>
+      <p class="hero-sub">For men who look strong on the outside but feel stuck, overwhelmed, or alone on the inside. MR Man Legacy brings together biblical truth, brain science, and brotherhood — growth with direction, honesty, and no hype.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-ember">Book a Discovery Call</a>
+        <a href="#services" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">See How It Works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <span class="trust-icon">✦</span>
+          <span class="trust-text">Biblical truth + brain science</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✦</span>
+          <span class="trust-text">Led by Mark Pierce & Rick Krug</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">✦</span>
+          <span class="trust-text">Phoenix, Arizona area</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILLARS BAND ===== -->
+<div class="pillars-band">
+  <div class="pillars-inner">
+    <p class="section-label">The Five Pillars</p>
+    <h2 class="section-title" style="font-size:var(--text-xl);">Men Out of Balance in These Areas Are Ready to Grow</h2>
+    <div class="pillars-row">
+      <div class="pillar"><div class="pillar-icon">✝</div><div class="pillar-label">Faith</div></div>
+      <div class="pillar"><div class="pillar-icon">💪</div><div class="pillar-label">Fitness</div></div>
+      <div class="pillar"><div class="pillar-icon">🏠</div><div class="pillar-label">Family</div></div>
+      <div class="pillar"><div class="pillar-icon">🤝</div><div class="pillar-label">Friends</div></div>
+      <div class="pillar"><div class="pillar-icon">💼</div><div class="pillar-label">Finances</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="section">
+  <div class="section-inner-wide reveal">
+    <p class="section-label">How MR Man Legacy Helps</p>
+    <h2 class="section-title">Growth With Direction, Not Performance</h2>
+    <p class="section-body">MR Man Legacy serves husbands, fathers, single men, and leaders who are juggling work, marriage, kids, money, and faith — while quietly battling stress, anxiety, anger, grief, or disconnection. You are not looking for slogans. You are looking for something that helps you live differently.</p>
+    <div class="services-grid">
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <circle cx="22" cy="22" r="18"/><path d="M22 12v10l6 4"/>
+        </svg>
+        <span class="service-tag">Live Event</span>
+        <h3>Men's Gathering</h3>
+        <p>A focused live event for men who need spiritual reset, clarity, and renewed direction. Honest conversation, practical wisdom, and a clear call forward.</p>
+      </article>
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <circle cx="16" cy="16" r="8"/><circle cx="28" cy="28" r="8"/>
+          <path d="M22 10 L34 10 M10 22 L10 34"/>
+        </svg>
+        <span class="service-tag">Small Group</span>
+        <h3>Brotherhood Circle</h3>
+        <p>A recurring small-group gathering built around honest listening, connection, and accountability. Men who show up consistently grow in ways they can't alone.</p>
+      </article>
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <rect x="6" y="10" width="32" height="24" rx="4"/>
+          <path d="M14 20h16 M14 26h10"/>
+        </svg>
+        <span class="service-tag">Retreat</span>
+        <h3>Men's Retreat</h3>
+        <p>A retreat-style experience for men who need space to step back, examine life, and move forward stronger. Designed to restore clarity and recalibrate direction.</p>
+      </article>
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <path d="M22 6 L38 20 L22 38 L6 20 Z"/>
+          <circle cx="22" cy="22" r="4"/>
+        </svg>
+        <span class="service-tag">Leadership</span>
+        <h3>Leadership Track</h3>
+        <p>A track for men who want to live with more courage, consistency, and responsibility. Practical tools for husbands, fathers, and men in organizational roles.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISSION BAND ===== -->
+<div class="mission-band">
+  <blockquote>"MR Man Legacy is built to call men forward with <em>courage, wisdom, and practical next steps</em> — not hype, not performance, and not shame."</blockquote>
+  <cite>— Mark Pierce & Rick Krug, MR Man Legacy</cite>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="section">
+  <div class="section-inner reveal">
+    <p class="section-label">Meet the Men Behind MR Man Legacy</p>
+    <h2 class="section-title">Led by Mark Pierce &amp; Rick Krug</h2>
+    <p class="section-body">MR Man Legacy is built on the conviction that men grow best when they are challenged well, listened to seriously, and surrounded by honest brotherhood. Mark and Rick bring that conviction to every event, group, and conversation.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <img
+          src="D880CD23-2EDB-4348-9543-AB5DDA14972C_1_105_c.jpg"
+          alt="Mark Pierce, Licensed Professional Counselor and men's guide"
+          width="600" height="400" loading="lazy" class="about-card-img">
+        <div class="about-card-body">
+          <h3 class="about-card-name">Mark Pierce</h3>
+          <p class="about-card-role">Licensed Professional Counselor · Men's Guide</p>
+          <p>Mark Pierce, known as “Homie” and now “GPops” to the men and family he loves, is the founder of MR Man Legacy and a Licensed Professional Counselor (LPC) with a master’s degree in Clinical Mental Health Counseling. Born in Iowa and a lifelong Iowa Hawkeyes fan, Mark brings the same passion and loyalty to the men he serves. He has been married to his wife for 21 years, is a proud father of three, and recently stepped into the joy of grandfatherhood with his new grandson. As both an entrepreneur and a mental health professional, Mark blends clinical insight with real-world experience to help men build stronger character, deeper relationships, and a clear sense of purpose in every area of life.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img
+          src="./Krug_-Rick-Picture.jpg"
+          alt="Rick Krug, coach and speaker with MR Man Legacy"
+          width="600" height="400" loading="lazy" class="about-card-img">
+        <div class="about-card-body">
+          <h3 class="about-card-name">Rick Krug</h3>
+          <p class="about-card-role">Coach · Speaker · Ministry Leader</p>
+          <p>Rick has spent over three decades doing one thing in dozens of different rooms: helping people tell the truth about where they actually are. He's a Certified Business Coach with a master's in theology from Pepperdine, decades of pastoral and teaching experience, and — somewhat unexpectedly — a background in stand-up comedy. That last one matters more than it sounds. It means Rick knows how to read a room, sit in a silence, and tell a story that lands. He's spent his career in the space where biblical truth meets real life — teaching, preaching, coaching, and writing for men who are tired of performing and ready for something honest.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials" class="section">
+  <div class="section-inner-wide reveal">
+    <p class="section-label">What Men Are Saying</p>
+    <h2 class="section-title">Real Change. Real Brotherhood.</h2>
+    <p class="section-body">These are men who were stuck, overwhelmed, or quietly losing ground — and chose to do something about it.</p>
+    <div class="testimonial-grid">
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"I had been white-knuckling life for years. MR Man Legacy gave me a place where I could finally be honest and get honest back. That changed everything."</blockquote>
+        <span class="testimonial-author">— Phoenix-area husband & father</span>
+      </article>
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"Mark and Rick don't let you stay comfortable in your story. They challenge you well and stand beside you. I left with clarity I hadn't had in years."</blockquote>
+        <span class="testimonial-author">— Men's group participant</span>
+      </article>
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"The brotherhood element is real. This is not a motivational event — it is a room full of men actually trying to live differently. I keep coming back."</blockquote>
+        <span class="testimonial-author">— Retreat attendee</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EVENTS BAND ===== -->
+<div class="events-band" id="events">
+  <div class="events-inner">
+    <div class="reveal">
+      <p class="section-label">Current Opportunity</p>
+      <h2 class="events-headline">Don't Miss the <em>Next Event</em></h2>
+      <p class="section-body" style="margin-bottom:var(--space-8);">The events page is built to attract attention fast, surface the current opportunity, and make the next step feel obvious. If you're ready to move, start here.</p>
+      <a href="#contact" class="btn btn-ember">Ask About This Event</a>
+    </div>
+    <div class="event-featured-card reveal">
+      <img src="https://picsum.photos/seed/mrman-event-men/600/340" alt="MR Man Legacy upcoming men's event" width="600" height="340" loading="lazy">
+      <div class="event-card-body">
+        <span class="event-badge">Featured Event</span>
+        <h3>MR Man Legacy — Live Men's Event</h3>
+        <p class="event-meta">Date: <span>Coming Soon</span> &nbsp;·&nbsp; Location: <span>Phoenix, Arizona Area</span></p>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-6);line-height:1.65;">A focused event for men who need spiritual reset, clarity, and renewed direction. Theme: Purpose, Direction &amp; Brotherhood.</p>
+        <a href="#contact" class="btn btn-primary">Reserve Your Spot</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section">
+  <div class="section-inner reveal">
+    <p class="section-label">Questions</p>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-body">Real questions from men who wanted to know more before they showed up.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Who is MR Man Legacy for?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>MR Man Legacy is for husbands, fathers, single men, and leaders who are juggling work, marriage, kids, money, and faith while quietly battling stress, anxiety, anger, grief, numbness, or disconnection. If you feel out of balance in your Faith, Fitness, Family, Friends, or Finances, this is built for you.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Do I have to be a Christian to attend?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>MR Man Legacy draws on biblical truth as a foundation, but the conversations are designed for men who are honest, ready to grow, and willing to show up. If that's you, reach out and let's talk about whether the current offering is a good fit.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What happens at a MR Man Legacy event?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Events are designed to be honest, practical, and grounded. Expect real conversation, challenge that is delivered with respect, and time to reflect and connect. There is no performance expected of you — just honesty and presence.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How do I know if I'm ready?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>If you have read this far, you are probably more ready than you think. The men who grow most in MR Man Legacy are not the ones who had it together — they are the ones who were honest enough to admit they didn't. Send us a message and we will talk it through with you.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Can I bring a friend or invite someone?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Most men who attend know another man who needs this. If you have someone in mind, bring him or forward the invitation. Brotherhood grows when men bring other men.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Can Mark or Rick speak at our event or organization?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Use the contact form below to reach out with speaking invitations, partnership conversations, or questions about bringing MR Man Legacy to your organization, church, or event.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section">
+  <div class="section-inner-wide reveal">
+    <p class="section-label">Take the Next Step</p>
+    <h2 class="section-title">Ready to Move?</h2>
+    <p class="section-body">Use this form for event questions, coaching interest, speaking invitations, or partnership conversations. We read every message and respond personally.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-detail">
+          <svg class="contact-detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="contact-detail-text">
+            <strong>Location</strong>
+            Phoenix, Arizona Area
+          </div>
+        </div>
+        <div class="contact-detail">
+          <svg class="contact-detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <a href="mailto:info@mrmanlegacy.com" style="color:var(--color-primary);text-decoration:none;">info@mrmanlegacy.com</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <svg class="contact-detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+          <div class="contact-detail-text">
+            <strong>Phone</strong>
+            <a href="tel:+16025550000" style="color:var(--color-primary);text-decoration:none;">(602) 555-0000</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <svg class="contact-detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="contact-detail-text">
+            <strong>Response Time</strong>
+            We respond within 24–48 hours, personally.
+          </div>
+        </div>
+        <div style="margin-top:var(--space-4);padding:var(--space-6);background:var(--color-surface-offset);border-radius:var(--radius-lg);border:1px solid var(--color-border);">
+          <p style="font-size:var(--text-sm);color:var(--color-text-muted);font-style:italic;line-height:1.6;">"They need a place where they can be honest, listened to seriously, and challenged well. MR Man Legacy is built for that."</p>
+        </div>
+      </div>
+      <form class="contact-form" action="#" method="post" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Mark" required>
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Pierce" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone (optional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="(602) 555-0000">
+        </div>
+        <div class="form-group">
+          <label for="interest">What brings you here?</label>
+          <select id="interest" name="interest">
+            <option value="">Choose one</option>
+            <option value="event">Upcoming event</option>
+            <option value="coaching">Coaching / counseling</option>
+            <option value="group">Small group</option>
+            <option value="speaking">Speaking invitation</option>
+            <option value="partnership">Partnership</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us a little about where you are and what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-ember" style="width:100%;padding:var(--space-4) var(--space-8);">Send Message</button>
+        <p style="font-size:var(--text-xs);color:var(--color-text-faint);text-align:center;">Your message is confidential. We won't spam you.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" aria-label="Site footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo" aria-label="MR Man Legacy home">
+        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#1a3035"/>
+          <text x="5" y="28" font-family="Georgia, serif" font-weight="900" font-size="20" fill="#3d9aa6">MR</text>
+          <rect x="5" y="31" width="30" height="2.5" rx="1.25" fill="#c8681a"/>
+        </svg>
+        <span class="nav-logo-text">MR <span>Man</span></span>
+      </a>
+      <p>MR Man Legacy brings together biblical truth, brain science, and everyday life for men who are ready to live with more purpose, clarity, and direction. Led by Mark Pierce and Rick Krug — Phoenix, Arizona area.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul role="list">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#testimonials">Stories</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul role="list">
+        <li><a href="mailto:info@mrmanlegacy.com">info@mrmanlegacy.com</a></li>
+        <li><a href="tel:+16025550000">(602) 555-0000</a></li>
+        <li><span style="color:var(--color-text-faint)">Phoenix, Arizona Area</span></li>
+        <li><a href="#contact">Send a Message</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 MR Man Legacy. All rights reserved. mrmanlegacy.com</p>
+    <div class="footer-contact">
+      <a href="mailto:info@mrmanlegacy.com">info@mrmanlegacy.com</a> &nbsp;·&nbsp;
+      <a href="tel:+16025550000">(602) 555-0000</a> &nbsp;·&nbsp;
+      <span style="color:var(--color-text-faint)">Phoenix, AZ</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// Popup
+(function(){
+  var popup = document.getElementById('popup');
+  var close = document.getElementById('popup-close');
+  var cta = document.getElementById('popup-cta');
+  var evtLink = document.getElementById('popup-events');
+
+  function closePopup(){
+    popup.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeAndScroll(target){
+    closePopup();
+    var el = document.querySelector(target);
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  }
+
+  setTimeout(function(){ popup.classList.add('open'); document.body.style.overflow='hidden'; }, 2200);
+
+  close.addEventListener('click', closePopup);
+  popup.addEventListener('click', function(e){ if(e.target===popup) closePopup(); });
+  cta.addEventListener('click', function(e){ e.preventDefault(); closeAndScroll('#contact'); });
+  evtLink.addEventListener('click', function(e){ e.preventDefault(); closeAndScroll('#events'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePopup(); });
+})();
+
+// Mobile nav
+(function(){
+  var toggle = document.getElementById('nav-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  var open = false;
+  toggle.addEventListener('click', function(){
+    open = !open;
+    mobileNav.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ open=false; mobileNav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); });
+  });
+})();
+
+// Scroll reveal
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!window.IntersectionObserver){ els.forEach(function(e){ e.classList.add('visible'); }); return; }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if(entry.isIntersecting){ entry.target.classList.add('visible'); obs.unobserve(entry.target); } });
+  }, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+  els.forEach(function(el){ obs.observe(el); });
+})();
+
+// FAQ accordion
+(function(){
+  document.querySelectorAll('.faq-question').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-question').forEach(function(b){ b.setAttribute('aria-expanded','false'); });
+      document.querySelectorAll('.faq-answer').forEach(function(a){ a.classList.remove('open'); });
+      if(!expanded){ btn.setAttribute('aria-expanded','true'); btn.nextElementSibling.classList.add('open'); }
+    });
+  });
+})();
+
+// Active nav link on scroll
+(function(){
+  var sections = ['hero','services','about','events','testimonials','faq','contact'];
+  var links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', function(){
+    var scrollY = window.scrollY + 120;
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(!el) return;
+      if(el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY){
+        links.forEach(function(l){ l.style.color = ''; });
+        var active = document.querySelector('.nav-links a[href="#'+id+'"]');
+        if(active) active.style.color = 'var(--color-text)';
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
